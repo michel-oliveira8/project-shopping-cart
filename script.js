@@ -50,11 +50,17 @@ function createCartItemElement({
   li.addEventListener('click', cartItemClickListener);
   return li;
 }
-
+// Requisito 6 //
+const emptyCart = () => {
+  const buttonEmpty = document.querySelector('.empty-cart');
+  buttonEmpty.addEventListener('click', () => {
+    ol.innerHTML = '';
+  });
+};
 // Requisito 2//
 const fetchProductsItens = () => {
   const items = document.querySelectorAll('.item__add');
-   items.forEach((item) => {
+  items.forEach((item) => {
     item.addEventListener('click', (event) => {
       const getSku = getSkuFromProductItem(event.target.parentElement);
       fetch(`https://api.mercadolibre.com/items/${getSku}`)
@@ -67,7 +73,7 @@ const fetchProductsItens = () => {
           }));
         });
     });
-   });
+  });
 };
 
 // Requisito 1//
@@ -87,7 +93,7 @@ const fetchMercadoLivre = () => {
   });
 };
 
-window.onload = async () => {
-  await fetchMercadoLivre();
-  fetchProductsItens();
+window.onload = () => {
+  fetchMercadoLivre();
+  emptyCart();
 };
