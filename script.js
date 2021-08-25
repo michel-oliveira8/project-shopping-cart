@@ -1,5 +1,6 @@
 const ol = document.querySelector('.cart__items');
 const carregando = document.createElement('h1');
+const totalPrice = document.querySelector('.total-price');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -14,6 +15,10 @@ function createCustomElement(element, className, innerText) {
   e.innerText = innerText;
   return e;
 }
+// Requisito 4, parte 1, Carrega o carrinho de compras através do LocalStorage ao iniciar a página//
+const saveStorage = () => {
+  localStorage.setItem('item_cart', ol.innerHTML);
+};
 
 function createProductItemElement({
   sku,
@@ -34,10 +39,10 @@ function createProductItemElement({
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
-
+// Requisito 3 Remove o item do carrinho de compras ao clicar nele //
 function cartItemClickListener(event) {
-  // coloque seu código aqui
   ol.removeChild(event.target);
+  saveStorage();
 }
 
 function createCartItemElement({
@@ -51,15 +56,14 @@ function createCartItemElement({
   li.addEventListener('click', cartItemClickListener);
   return li;
 }
-// Requisito 6 //
+// Requisito 6  Cria um botão para limpar carrinho de compras //
 const emptyCart = () => {
   const buttonEmpty = document.querySelector('.empty-cart');
   buttonEmpty.addEventListener('click', () => {
     ol.innerHTML = '';
   });
 };
-
-// Requisito 2//
+// Requisito 2 Adiciona o produto ao carrinho de compras. Ao clicar nesse botão você deve realizar uma requisição para o endpoint//
 const fetchProductsItens = () => {
   const items = document.querySelectorAll('.item__add');
   items.forEach((item) => {
@@ -73,21 +77,28 @@ const fetchProductsItens = () => {
             name: element.title,
             salePrice: element.price,
           }));
+          saveStorage();
         });
     });
   });
 };
-
+// Requisito 7 Criado a classe e texto "loading" durante uma requisição à API//
 const loading = () => {
   const pai = document.querySelector('.container');
   pai.appendChild(carregando);
   carregando.className = 'loading';
   carregando.innerText = 'loading...';
 };
-
-// Requisito 1//
+// Requisito 4, parte 2 Função para pegar cada li na ol e depois excluir cada item salvo no LocalStorage, após clique.//
+const loadingLocalStorage = () => {
+  ol.innerHTML = localStorage.getItem('item_cart');
+  ol.childNodes.forEach((li) => { // https://developer.mozilla.org/pt-BR/docs/Web/API/Node/childNodes //
+    li.addEventListener('click', cartItemClickListener);
+  });
+};
+// Requisito 1 criar uma listagem de produtos que devem ser consultados através da API do Mercado Livre.//
 const fetchMercadoLivre = () => {
-  loading();
+  loading();// chama a função durante a requisição à API //
   fetch('https://api.mercadolibre.com/sites/MLB/search?q=computador').then((response) => {
     response.json().then((dados) => {
       carregando.remove();
@@ -107,4 +118,5 @@ const fetchMercadoLivre = () => {
 window.onload = () => {
   fetchMercadoLivre();
   emptyCart();
+  loadingLocalStorage();
 };
