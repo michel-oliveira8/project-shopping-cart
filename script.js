@@ -1,6 +1,7 @@
 const ol = document.querySelector('.cart__items');
 const carregando = document.createElement('h1');
-const totalPrice = document.querySelector('.total-price');
+const prices = document.querySelector('.total-price');
+let totalPrices = 0;
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -39,11 +40,28 @@ function createProductItemElement({
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
+// Requisito 5 Função subtrai os preços dos itens do carrinho, após clicar nele através da função cartItemClickListener //
+const sub = (item) => {
+  const subtrair = item.target.innerText.slice(5, 18);// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/slice //
+  fetch(`https://api.mercadolibre.com/items/${subtrair}`)
+    .then((response) => response.json())
+    .then((element) => {
+      totalPrices -= element.price;
+      prices.innerText = totalPrices;
+    });
+};
+
 // Requisito 3 Remove o item do carrinho de compras ao clicar nele //
 function cartItemClickListener(event) {
   ol.removeChild(event.target);
+  sub(event);
   saveStorage();
 }
+// Requisito 5 Soma os valores dos items do carrinho //
+const soma = (itemPrice) => {
+  totalPrices += itemPrice;
+  prices.innerText = totalPrices;
+};
 
 function createCartItemElement({
   sku,
@@ -63,6 +81,7 @@ const emptyCart = () => {
     ol.innerHTML = '';
   });
 };
+
 // Requisito 2 Adiciona o produto ao carrinho de compras. Ao clicar nesse botão você deve realizar uma requisição para o endpoint//
 const fetchProductsItens = () => {
   const items = document.querySelectorAll('.item__add');
@@ -77,6 +96,7 @@ const fetchProductsItens = () => {
             name: element.title,
             salePrice: element.price,
           }));
+          soma(element.price);
           saveStorage();
         });
     });
@@ -98,7 +118,7 @@ const loadingLocalStorage = () => {
 };
 // Requisito 1 criar uma listagem de produtos que devem ser consultados através da API do Mercado Livre.//
 const fetchMercadoLivre = () => {
-  loading();// chama a função durante a requisição à API //
+  loading(); // chama a função durante a requisição à API //
   fetch('https://api.mercadolibre.com/sites/MLB/search?q=computador').then((response) => {
     response.json().then((dados) => {
       carregando.remove();
