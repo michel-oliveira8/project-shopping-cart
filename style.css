@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -54,4 +58,23 @@
   flex-basis: 1;
   font-size: 16pt;
   text-align: center;
+  font-size: 30px;
+}
+
+.header {
+  background-color: yellow;
+  display: flex;
+  justify-content: space-between;
+  align-self: baseline;
+  padding: 10px;
+}
+
+.logo-ml .other-logo {
+  display: flex;
+  align-self: center;
+}
+
+.title-page {
+  color: #551A8B;
+  font-size:60px;
 }

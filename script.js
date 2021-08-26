@@ -2,6 +2,7 @@ const ol = document.querySelector('.cart__items');
 const carregando = document.createElement('h1');
 const prices = document.querySelector('.total-price');
 let totalPrices = 0;
+prices.innerText = totalPrices;
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -54,8 +55,8 @@ const sub = (item) => {
 // Requisito 3 Remove o item do carrinho de compras ao clicar nele //
 function cartItemClickListener(event) {
   ol.removeChild(event.target);
-  sub(event);
   saveStorage();
+  sub(event);
 }
 // Requisito 5 Soma os valores dos items do carrinho //
 const soma = (itemPrice) => {
@@ -79,6 +80,8 @@ const emptyCart = () => {
   const buttonEmpty = document.querySelector('.empty-cart');
   buttonEmpty.addEventListener('click', () => {
     ol.innerHTML = '';
+    localStorage.removeItem('item_cart');
+    prices.innerText = 0;
   });
 };
 
