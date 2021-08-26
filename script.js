@@ -41,15 +41,13 @@ function createProductItemElement({
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
-// Requisito 5 Função subtrai os preços dos itens do carrinho, após clicar nele através da função cartItemClickListener //
+// Requisito 5 Função subtrai os preços dos itens do carrinho //
 const sub = (item) => {
-  const subtrair = item.target.innerText.slice(5, 18);// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/slice //
-  fetch(`https://api.mercadolibre.com/items/${subtrair}`)
-    .then((response) => response.json())
-    .then((element) => {
-      totalPrices -= element.price;
-      prices.innerText = totalPrices;
-    });
+  const subtrair = item.target.innerText;
+  const indexValue = subtrair.indexOf('$'); // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf //
+  const getString = subtrair.slice(indexValue + 1, subtrair.length); // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/slice //
+  totalPrices -= getString;
+  prices.innerText = totalPrices;
 };
 
 // Requisito 3 Remove o item do carrinho de compras ao clicar nele //
