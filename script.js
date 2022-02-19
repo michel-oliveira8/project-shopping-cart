@@ -22,6 +22,10 @@ const saveStorage = () => {
   localStorage.setItem('item_cart', ol.innerHTML);
 };
 
+const savePriceStorage = () => {
+  localStorage.setItem('price', prices.innerHTML);
+};
+
 function createProductItemElement({
   sku,
   name,
@@ -140,4 +144,5 @@ window.onload = () => {
   fetchMercadoLivre();
   emptyCart();
   loadingLocalStorage();
+  savePriceStorage();
 };
