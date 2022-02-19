@@ -1,5 +1,5 @@
 # Projeto realizado durante curso na Trybe - Módulo de Fundamentos
-# Data do projeto 16/08/2021
+# Data da entrega do projeto 23/08/2021
 
 ## Habilidades
 
