@@ -1,40 +1,21 @@
 # Projeto realizado durante curso na Trybe - Módulo de Fundamentos
-# Data da entrega do projeto 23/08/2021
 
-## Habilidades
+## Dsenvolvimento
 
-Nesse projeto, você será capaz de:
+Nesse projeto foi realizado um **carrinho de compras** totalmente dinâmico! Consumindo dados diretamente de uma **API!**.
+<br>
+Foi utilizado a API do Mercado Livre para buscar produtos à venda.
+<br>
+API está disponível no link: https://developers.mercadolivre.com.br/pt_br/itens-e-buscas
 
-- Fazer requisições a uma API *(Application Programming Interface)* do Mercado Livre;
-- Utilizar os seus conhecimentos sobre JavaScript, CSS e HTML;
-- Trabalhar com funções assíncronas;
+## Clone o repositório:
+ - `git clone git@github.com:michel-oliveira8/project-shopping-cart.git`
+ 
+### Entre na pasta do repositório que você acabou de clonar:
+ - `cd project-shopping-cart`
 
----
+## Instale as dependências:
+ - `npm install`
 
-## O que será desenvolvido
-
-Nesse projeto vocês farão um **carrinho de compras** totalmente dinâmico! E o melhor: consumindo dados diretamente de uma **API!** Isso mesmo. Da sigla em inglês _Application Programming Interface_, uma API é um ponto de contato na internet com determinado serviço. Através de **requisições HTTP** a essa API é possível interagir com ela da forma como quem a criou planejou. Aqui usaremos a API do Mercado Livre para buscarmos produtos à venda.
-
-Instale as dependências e inicialize o projeto
-  * Instale as dependências:
-    * `npm install`
-
-# Requisitos do projeto
-
-## API Shopping Cart
-
-O [manual da API do Mercado Livre](https://developers.mercadolivre.com.br/pt_br/itens-e-buscas) contém muitas informações sobre ela. Utilizaremos alguns dos _endpoints_, e a forma de uso está detalhada no primeiro requisito.
-
-### 1. Crie uma listagem de produtos
-
-### 2. Adicione o produto ao carrinho de compras
-
-### 3. Remova o item do carrinho de compras ao clicar nele
-
-### 4. Carregue o carrinho de compras através do **LocalStorage** ao iniciar a página
-
-### 5. Some o valor total dos itens do carrinho de compras
-
-### 6. Crie um botão para limpar carrinho de compras
-
-### 7. Adicione um texto de "loading" durante uma requisição à API
+#### Obs.: Projeto realizado em Javascript puro, para rodá-lo clique com botão direito no seu editor de código, e selecione a opção:
+- `open with Live Server`
