@@ -1,6 +1,6 @@
 # Projeto realizado durante curso na Trybe - Módulo de Fundamentos
 
-## Dsenvolvimento
+## Desenvolvimento
 
 Nesse projeto foi realizado um **carrinho de compras** totalmente dinâmico! Consumindo dados diretamente de uma **API!**.
 <br>
