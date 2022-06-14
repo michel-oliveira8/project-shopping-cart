@@ -8,6 +8,10 @@ Foi utilizado a API do Mercado Livre para buscar produtos à venda.
 <br>
 API está disponível no link: https://developers.mercadolivre.com.br/pt_br/itens-e-buscas
 
+### Tecnologias:
+
+  - `HTML, CSS, JavaScript`
+
 ## Clone o repositório:
  - `git clone git@github.com:michel-oliveira8/project-shopping-cart.git`
  
